@@ -1,0 +1,14 @@
+<div class="text-center">
+    @model User
+    <h1 class="display-4">Login</h1>
+    <a asp-action="RegisterPage" controller="Home">Register</a>
+    <form class="loggy" asp-action="Login" controller="Home" method="post">
+        <label asp-for="Email"></label><br>
+        <span class="error" asp-validation-for="Email"></span>
+        <input class="form-control" name = "Email" type="email">
+        <label asp-for="Password"></label><br>
+        <span class="error" asp-validation-for="Password"></span>
+        <input class="form-control" name = "Password" type="password">
+        <button class="btn btn-primary">Login</button>
+    </form>
+</div>

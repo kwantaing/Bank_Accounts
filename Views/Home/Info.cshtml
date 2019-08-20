@@ -1,0 +1,32 @@
+@model User
+
+<a asp-action="Logout" controller="Home">Logout</a>
+<div class="text-center">
+    <h1 class="display-3">Welcome @Model.FirstName</h1>
+    <h3 class="display-5">Make a transaction</h3>
+    <h4 class="display-5">You have $@Math.Round(Model.balance,2)</h4>
+
+    <form asp-action="newTransaction" controller="Home" method="post">
+        <span for="amount"class="error"></span>
+        <label for="amount">Deposit/ Withdraw</label>
+        <input style="text-align:center" type="text" name="amount" placeholder="100.00">
+        <input type="hidden" name="user_id" value=@Model.user_id>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var transaction in Model.UserTransactions){
+                <tr>
+                    <td>$@Math.Round(transaction.amount,2)</td>
+                    <td>@transaction.createdAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
